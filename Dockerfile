@@ -7,6 +7,22 @@ ARG RUN_PIPENV_LOCK=false
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# for compiling biotite
+# Install necessary packages for building wheels
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    python3-dev \
+    libssl-dev \
+    libffi-dev \
+    libxml2-dev \
+    libxslt1-dev \
+    zlib1g-dev \
+    wget \
+    git
+
+# Install Cython if needed for biotite
+RUN pip install --upgrade pip setuptools wheel cython
+
 RUN pip install pipenv
 
 # Create a working directory
