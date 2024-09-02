@@ -1,17 +1,25 @@
 # Use the official Python image with a specific version
 FROM python:3.12-slim-bookworm
+# Define an argument to control whether to run pipenv lock
+ARG RUN_PIPENV_LOCK=false
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+RUN pip install pipenv
+
 # Create a working directory
 WORKDIR /app
 
 # Install dependencies
-COPY Pipfile ./
-RUN pip install pipenv
-# RUN pipenv install --deploy --system
+COPY Pipfile* ./
+
+# Conditionally run pipenv lock based on the argument
+RUN if [ "$RUN_PIPENV_LOCK" = "true" ]; then pipenv lock --dev --clear; fi
+
+# Install all dependencies using the wheels
+RUN pipenv sync --dev --system
 
 # Copy the app code
 COPY ./app /app
