@@ -17,7 +17,7 @@ torch = "*"
 torchvision = "*"
 torchaudio = "*"
 # huggingface_hub = "*"
-# esm = "*"
+esm = "*"
 
 [requires]
 python_version = "3.12"

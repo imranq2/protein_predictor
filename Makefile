@@ -1,3 +1,6 @@
+Pipfile.lock: Pipfile
+	docker-compose build --build-arg RUN_PIPENV_LOCK=true
+
 build:
 	docker compose build
 
