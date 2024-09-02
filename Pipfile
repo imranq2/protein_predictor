@@ -8,9 +8,9 @@ verify_ssl = true
 [packages]
 fastapi = "*"
 uvicorn = "*"
-torch = "*"
-huggingface_hub = "*"
-esm = "*"
+# torch = "*"
+# huggingface_hub = "*"
+# esm = "*"
 
 [requires]
 python_version = "3.12"
